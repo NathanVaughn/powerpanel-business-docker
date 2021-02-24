@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    image: nathanvaughn/powerpanel-business:local-latest
+    #build: .
+    ports:
+      - 80:3052
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - app_data:/usr/local/ppbe/db_local/
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
+
+volumes:
+  app_data:
+    driver: local

@@ -1,0 +1,9 @@
+README.md
+LICENSE
+
+docker-compose.yml
+updater.py
+
+.git/*
+.github/*
+docs/

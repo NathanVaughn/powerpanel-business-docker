@@ -1,0 +1,6 @@
+# syntax = edrevo/dockerfile-plus
+FROM alpine:latest AS copier
+
+COPY install-local.exp install.exp
+
+INCLUDE+ Dockerfile
