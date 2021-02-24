@@ -49,7 +49,7 @@ def build(version):
 
         # # push all the tags
         for tagging in tagging_list:
-            subprocess.run("docker push {}".format(tagging), shell=True)
+            subprocess.run("docker push {}".format(tagging), shell=True, check=True)
 
 
 def main():
