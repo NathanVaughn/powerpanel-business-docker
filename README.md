@@ -19,6 +19,40 @@ If you want to jump right in, take a look at the provided
 
 The default username and password is `admin` and `admin`.
 
+### USB Devices
+
+If you're using the `local` version, the Docker image will need to be able
+to access USB device of the UPS. There's two ways to accomplish this.
+First, you can give the container access to the specific USB device.
+Find the USB ID with `lsusb`:
+
+```bash
+nathan@zeus:[~]$ lsusb
+Bus 002 Device 002: ID 8087:8001 Intel Corp.
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 8087:8009 Intel Corp.
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 002: ID 0bda:2832 Realtek Semiconductor Corp. RTL2832U DVB-T
+Bus 003 Device 006: ID 0764:0601 Cyber Power System, Inc. PR1500LCDRT2U UPS
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+nathan@zeus:[~]$
+```
+
+Then pass in the specific USB device:
+
+```yml
+devices:
+  - /dev/bus/usb/003/006:/dev/bus/usb/003/006
+```
+
+However, the ID of the USB device is liable to change given a host reboot. Thus,
+if security isn't as important, you can run the container in privileged mode:
+
+```yml
+privileged: true
+```
+
 ### Volumes
 
 The image mounts:
