@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/docker/v/nathanvaughn/powerpanel-business)](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
 [![](https://img.shields.io/docker/image-size/nathanvaughn/powerpanel-business)](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
-[![](https://img.shields.io/docker/pulls/nathanvaughnpowerpanel-business)](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
+[![](https://img.shields.io/docker/pulls/nathanvaughn/powerpanel-business)](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
 [![](https://img.shields.io/github/license/nathanvaughn/powerpanel-business-docker)](https://github.com/NathanVaughn/powerpanel-business-docker)
 
 This is a Docker image for
