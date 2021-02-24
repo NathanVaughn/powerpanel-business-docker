@@ -38,5 +38,13 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/nathanvaughn/powerpanel-business-docker.git" \
       org.label-schema.vcs-type="Git" \
-      org.opencontainers.image.source=https://github.com/nathanvaughn/powerpanel-business-docker
-
+      org.opencontainers.image.created=$BUILD_DATE \
+      org.opencontainers.image.title="nathanvaughn/powerpanel-business" \
+      org.opencontainers.image.description="Docker image for PowerPanel Business" \
+      org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.url="https://github.com/nathanvaughn/powerpanel-business-docker" \
+      org.opencontainers.image.authors="Nathan Vaughn" \
+      org.opencontainers.image.vendor="nathanvaughn" \
+      org.opencontainers.image.version=$POWERPANEL_VERSION \
+      org.opencontainers.image.revision=$VCS_REF \
+      org.opencontainers.image.source="https://github.com/nathanvaughn/powerpanel-business-docker.git"

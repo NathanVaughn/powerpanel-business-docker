@@ -32,6 +32,17 @@ jobs:
         username: ${{ secrets.GITHUBCR_USERNAME }}
         password: ${{ secrets.GITHUBCR_PASSWORD }}
 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-central-1
+
+    - name: Amazon ECR Login
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
     - name: Run Builder Script
       run: python3 builder.py
       env:

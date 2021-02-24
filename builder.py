@@ -6,9 +6,12 @@ import subprocess
 import sys
 import urllib.request
 
-REGISTRIES = ["docker.io", "ghcr.io"]
 VARIANTS = ["local", "remote"]
-CONTAINER = "nathanvaughn/powerpanel-business"
+IMAGES = [
+    "docker.io/nathanvaughn/powerpanel-business",
+    "ghcr.io/nathanvaughn/powerpanel-business",
+    "public.ecr.aws/p4g0j6e0/powerpanel-business",
+]
 
 
 def get_version():
@@ -28,12 +31,9 @@ def build(version):
         filename = "Dockerfile.{}".format(variant)
         tagging_list = []
 
-        for registry in REGISTRIES:
-            # build the image name
-            full_image = "{}/{}".format(registry, CONTAINER)
-            # create the list of tags for each variant
-            tagging_list.append("{}:{}-latest".format(full_image, variant))
-            tagging_list.append("{}:{}-{}".format(full_image, variant, version))
+        for image in IMAGES:
+            tagging_list.append("{}:{}-latest".format(image, variant))
+            tagging_list.append("{}:{}-{}".format(image, variant, version))
 
         # join everything together into a big command with a --tag for each tag
         tagging_cmd = " ".join("--tag {}".format(tagging) for tagging in tagging_list)
