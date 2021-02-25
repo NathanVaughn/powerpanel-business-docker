@@ -40,8 +40,7 @@ jobs:
         aws-region: us-east-1
 
     - name: Amazon ECR Login
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
 
     - name: Run Builder Script
       run: python3 builder.py
