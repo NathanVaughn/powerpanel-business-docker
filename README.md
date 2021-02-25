@@ -103,3 +103,11 @@ Example:
 ```yml
 image: nathanvaughn/powerpanel-business:remote-latest
 ```
+
+## Registry
+
+This image is available from 3 different registries. Choose whichever you want:
+
+ - [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
+ - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
+ - [public.ecr.aws/p4g0j6e0/powerpanel-business](https://gallery.ecr.aws/p4g0j6e0/powerpanel-business)
