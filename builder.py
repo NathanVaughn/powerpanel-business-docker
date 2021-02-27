@@ -10,7 +10,6 @@ VARIANTS = ["local", "remote"]
 IMAGES = [
     "docker.io/nathanvaughn/powerpanel-business",
     "ghcr.io/nathanvaughn/powerpanel-business",
-    "public.ecr.aws/p4g0j6e0/powerpanel-business",
 ]
 
 
