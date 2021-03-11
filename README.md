@@ -53,6 +53,8 @@ if security isn't as important, you can run the container in privileged mode:
 privileged: true
 ```
 
+This will automatically detect the correct USB device with no configuration.
+
 ### Volumes
 
 The image mounts:
@@ -64,7 +66,9 @@ Example `docker-compose`:
 ```yml
 volumes:
   - app_data:/usr/local/ppbe/db_local/
----
+
+...
+
 volumes:
   app_data:
     driver: local
@@ -72,7 +76,7 @@ volumes:
 
 ### Network
 
-The image exposes port 3052 (HTP) and 53568 (HTTPS).
+The image exposes port 3052 (HTTP) and 53568 (HTTPS).
 
 Example `docker-compose`:
 
@@ -106,7 +110,7 @@ image: ghcr.io/nathanvaughn/powerpanel-business:remote-latest
 
 ## Registry
 
-This image is available from 3 different registries. Choose whichever you want:
+This image is available from 2 different registries. Choose whichever you want:
 
  - [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
  - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
