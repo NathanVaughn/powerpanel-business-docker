@@ -93,7 +93,7 @@ for the difference between them.
 Example:
 
 ```yml
-image: nathanvaughn/powerpanel-business:local-440
+image: ghcr.io/nathanvaughn/powerpanel-business:local-440
 ```
 
 ### Latest
@@ -101,7 +101,7 @@ image: nathanvaughn/powerpanel-business:local-440
 Example:
 
 ```yml
-image: nathanvaughn/powerpanel-business:remote-latest
+image: ghcr.io/nathanvaughn/powerpanel-business:remote-latest
 ```
 
 ## Registry
