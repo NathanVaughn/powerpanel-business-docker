@@ -114,4 +114,4 @@ This image is available from 2 different registries. Choose whichever you want:
 
  - [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
  - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
- - [cr.nthnv.me/webtrees](https://cr.nthnv.me/repository/library/powerpanel-business) (experimental)
+ - [cr.nthnv.me/powerpanel-business](https://cr.nthnv.me/repository/library/powerpanel-business) (experimental)
