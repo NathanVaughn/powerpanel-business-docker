@@ -31,13 +31,17 @@ jobs:
         registry: ghcr.io
         username: ${{ secrets.GITHUBCR_USERNAME }}
         password: ${{ secrets.GITHUBCR_PASSWORD }}
-  
+
+    - name: nthnv.me CR Login
+      uses: docker/login-action@v1
+      with:
+        registry: cr.nthnv.me
+        username: ${{ secrets.NTHNVCR_USERNAME }}
+        password: ${{ secrets.NTHNVCR_PASSWORD }}
+
     - name: Run Builder Script
       run: python3 builder.py
       env:
         DOCKER_BUILDKIT: 1
         COMPOSE_DOCKER_CLI_BUILD: 1
 
-    - name: Clear Docker Credentials
-      if: always()
-      run: rm -f ${HOME}/.docker/config.json
