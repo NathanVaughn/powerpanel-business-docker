@@ -1,6 +1,6 @@
 FROM docker.io/library/ubuntu:latest
 
-ENV POWERPANEL_VERSION=450
+ENV POWERPANEL_VERSION=470
 
 RUN apt-get update && apt-get install -y \
       curl \
@@ -16,10 +16,12 @@ RUN curl -s -L https://dl4jz3rbrsfum.cloudfront.net/software/ppb${POWERPANEL_VER
  && chmod +x ppb-linux-x86_64.sh
 
 COPY --from=copier install.exp install.exp
-RUN chmod +x install.exp && expect ./install.exp && rm ppb-linux-x86_64.sh && rm install.exp
+RUN chmod +x install.exp && expect -d ./install.exp && rm ppb-linux-x86_64.sh && rm install.exp
 
-EXPOSE 3052
+# http, https, snmp
+EXPOSE 3052 
 EXPOSE 53568
+EXPOSE 162
 VOLUME ["/usr/local/ppbe/db_local/"]
 
 HEALTHCHECK CMD curl -vs --fail http://127.0.0.1:3052/ || exit 1

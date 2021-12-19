@@ -59,7 +59,7 @@ This will automatically detect the correct USB device with no configuration.
 
 The image mounts:
 
--   `/usr/local/ppbe/db_local/`
+- `/usr/local/ppbe/db_local/`
 
 Example `docker-compose`:
 
@@ -76,7 +76,7 @@ volumes:
 
 ### Network
 
-The image exposes port 3052 (HTTP) and 53568 (HTTPS).
+The image exposes port 3052 (HTTP), 53568 (HTTPS), and 162 (SNMP).
 
 Example `docker-compose`:
 
@@ -89,7 +89,7 @@ ports:
 ## Tags
 
 There are two versions available: `local` and `remote`.
-See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower-UM-PPB-440.pdf)
+See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower-UM-PPB-470.pdf)
 for the difference between them.
 
 ### Specific Versions
@@ -97,7 +97,7 @@ for the difference between them.
 Example:
 
 ```yml
-image: ghcr.io/nathanvaughn/powerpanel-business:local-440
+image: ghcr.io/nathanvaughn/powerpanel-business:local-470
 ```
 
 ### Latest
@@ -110,8 +110,8 @@ image: ghcr.io/nathanvaughn/powerpanel-business:remote-latest
 
 ## Registry
 
-This image is available from 2 different registries. Choose whichever you want:
+This image is available from 3 different registries. Choose whichever you want:
 
- - [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
- - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
- - [cr.nthnv.me/powerpanel-business](https://cr.nthnv.me/repository/library/powerpanel-business) (experimental)
+- [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
+- [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
+- [cr.nthnv.me/powerpanel-business](https://cr.nthnv.me/repository/library/powerpanel-business) (experimental)
