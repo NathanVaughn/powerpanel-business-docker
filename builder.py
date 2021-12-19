@@ -1,10 +1,11 @@
 import subprocess
 
+IMAGE_NAME = "powerpanel-business"
 VARIANTS = ["local", "remote"]
 IMAGES = [
-    "docker.io/nathanvaughn/powerpanel-business",
-    "ghcr.io/nathanvaughn/powerpanel-business",
-    "cr.nthnv.me/powerpanel-business",
+    f"docker.io/nathanvaughn/{IMAGE_NAME}",
+    f"ghcr.io/nathanvaughn/{IMAGE_NAME}",
+    f"cr.nthnv.me/{IMAGE_NAME}",
 ]
 
 
@@ -30,10 +31,10 @@ def build(version):
             tagging_list.append(f"{image}:{variant}-{version}")
 
         # join everything together into a big command with a --tag for each tag
-        tagging_cmd = " ".join("--tag {}".format(tagging) for tagging in tagging_list)
+        tagging_cmd = " ".join(f"--tag {tagging}" for tagging in tagging_list)
 
         # build the big docker build command
-        build_command = f'docker build -f {filename} . --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` {tagging_cmd}'
+        build_command = f'docker build -f {filename} . --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") --build-arg VCS_REF=$(git rev-parse --short HEAD) {tagging_cmd}'
 
         # build the image
         print(build_command)
@@ -41,7 +42,7 @@ def build(version):
 
         # # push all the tags
         for tagging in tagging_list:
-            subprocess.run(f"docker push {tagging}", shell=True, check=True)
+           subprocess.run(f"docker push {tagging}", shell=True, check=True)
 
 
 def main():

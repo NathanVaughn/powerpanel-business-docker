@@ -1,6 +1,6 @@
-FROM ubuntu:latest
+FROM docker.io/library/ubuntu:latest
 
-ENV POWERPANEL_VERSION=440
+ENV POWERPANEL_VERSION=450
 
 RUN apt-get update && apt-get install -y \
       curl \
