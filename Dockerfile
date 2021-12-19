@@ -1,6 +1,6 @@
 FROM docker.io/library/ubuntu:latest
 
-ENV POWERPANEL_VERSION=470
+ENV POWERPANEL_VERSION=480
 
 RUN apt-get update && apt-get install -y \
       curl \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
       expect \
       --no-install-recommends \
       && rm -rf /var/lib/apt/lists/*
-RUN curl -s -L https://dl4jz3rbrsfum.cloudfront.net/software/ppb${POWERPANEL_VERSION}-linux-x86_x64.sh -o ppb-linux-x86_64.sh \
+RUN curl -s -L -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' 'https://www.cyberpower.com/global/en/File/GetFileSampleByType?fileId=SU-20040001-04&fileType=Download%20Center&fileSubType=FileOriginal' -o ppb-linux-x86_64.sh \
  && chmod +x ppb-linux-x86_64.sh
 
 COPY --from=copier install.exp install.exp
