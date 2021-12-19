@@ -66,9 +66,7 @@ Example `docker-compose`:
 ```yml
 volumes:
   - app_data:/usr/local/ppbe/db_local/
-
-...
-
+---
 volumes:
   app_data:
     driver: local
@@ -115,3 +113,9 @@ This image is available from 3 different registries. Choose whichever you want:
 - [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
 - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
 - [cr.nthnv.me/powerpanel-business](https://cr.nthnv.me/repository/library/powerpanel-business) (experimental)
+
+## Known Issues
+
+- Versions 450+ appear to try to redirect to the HTTP port no matter what and don't work behind a reverse proxy (that I've figured out)
+- Version 480 always returns a 404 (no known fix)
+- This application does use Log4J, but I have personally not found any vulnerabilities for unauthenicated users (take this with a grain of salt)
