@@ -112,7 +112,7 @@ This image is available from 3 different registries. Choose whichever you want:
 
 - [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
 - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
-- [cr.nthnv.me/powerpanel-business](https://cr.nthnv.me/repository/library/powerpanel-business) (experimental)
+- [cr.nthnv.me/library/powerpanel-business](https://cr.nthnv.me/harbor/projects/1/repositories/powerpanel-business) (experimental)
 
 ## Known Issues
 
