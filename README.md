@@ -87,7 +87,7 @@ ports:
 ## Tags
 
 There are two versions available: `local` and `remote`.
-See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower-UM-PPB-470.pdf)
+See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-481.pdf)
 for the difference between them.
 
 ### Specific Versions
@@ -117,5 +117,5 @@ This image is available from 3 different registries. Choose whichever you want:
 ## Known Issues
 
 - Versions 450+ appear to try to redirect to the HTTP port no matter what and don't work behind a reverse proxy (that I've figured out)
-- Version 480 always returns a 404 (no known fix)
+- Version 480 always returns a 404 (this is fixed in 481)
 - This application does use Log4J, but I have personally not found any vulnerabilities for unauthenicated users (take this with a grain of salt)
