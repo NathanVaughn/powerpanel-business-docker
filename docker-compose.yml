@@ -9,7 +9,7 @@ services:
     privileged: true
     restart: unless-stopped
     volumes:
-      - app_data:/usr/local/ppbe/db_local/
+      - app_data:/usr/local/PPB/db_local/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
 

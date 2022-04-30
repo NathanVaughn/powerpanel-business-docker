@@ -59,13 +59,13 @@ This will automatically detect the correct USB device with no configuration.
 
 The image mounts:
 
-- `/usr/local/ppbe/db_local/`
+- `/usr/local/PPB/db_local/`
 
 Example `docker-compose`:
 
 ```yml
 volumes:
-  - app_data:/usr/local/ppbe/db_local/
+  - app_data:/usr/local/PPB/db_local/
 ---
 volumes:
   app_data:
