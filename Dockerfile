@@ -2,24 +2,24 @@ FROM docker.io/library/ubuntu:20.04
 
 ENV POWERPANEL_VERSION=481
 
-RUN apt-get update && apt-get install -y \
-      curl \
-      ca-certificates \
-      libgusb2 \
-      libusb-1.0-0 \
-      usb.ids \
-      usbutils \
-      --no-install-recommends \
-      && rm -rf /var/lib/apt/lists/*
-RUN curl -s -L 'https://dl4jz3rbrsfum.cloudfront.net/software/PPB_Linux%2064bit_v4.8.1.sh' -o ppb-linux-x86_64.sh \
- && chmod +x ppb-linux-x86_64.sh
-
-# See https://www.ej-technologies.com/resources/install4j/help/doc/installers/responseFile.html for 
-# definition of response files
+# See https://www.ej-technologies.com/resources/install4j/help/doc/installers/responseFile.html
+# for definition of response files
 COPY --from=copier response.varfile response.varfile
 
-# See https://www.ej-technologies.com/resources/install4j/help/doc/installers/options.html
-RUN ./ppb-linux-x86_64.sh -c -q -varfile response.varfile
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+        ca-certificates \
+        libgusb2 \
+        libusb-1.0-0 \
+        usb.ids \
+        usbutils \
+        --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/* && \
+    curl -s -L 'https://dl4jz3rbrsfum.cloudfront.net/software/PPB_Linux%2064bit_v4.8.1.sh' -o ppb-linux-x86_64.sh && \
+    chmod +x ppb-linux-x86_64.sh && \
+    ./ppb-linux-x86_64.sh -c -q -varfile response.varfile
+    # See https://www.ej-technologies.com/resources/install4j/help/doc/installers/options.html
 
 # http, https, snmp
 EXPOSE 3052
