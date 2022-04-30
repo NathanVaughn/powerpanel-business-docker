@@ -1,0 +1,6 @@
+# install4j response file for CyberPower PowerPanel Business 4.8.1
+sys.adminRights$Boolean=true
+sys.component.588$Boolean=false
+sys.component.589$Boolean=true
+sys.installationDir=/usr/local/ppbe
+sys.languageId=en

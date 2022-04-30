@@ -9,14 +9,17 @@ RUN apt-get update && apt-get install -y \
       libusb-1.0-0 \
       usb.ids \
       usbutils \
-      expect \
       --no-install-recommends \
       && rm -rf /var/lib/apt/lists/*
 RUN curl -s -L 'https://dl4jz3rbrsfum.cloudfront.net/software/PPB_Linux%2064bit_v4.8.1.sh' -o ppb-linux-x86_64.sh \
  && chmod +x ppb-linux-x86_64.sh
 
-COPY --from=copier install.exp install.exp
-RUN chmod +x install.exp && expect -d ./install.exp && rm ppb-linux-x86_64.sh && rm install.exp
+# See https://www.ej-technologies.com/resources/install4j/help/doc/installers/responseFile.html for 
+# definition of response files
+COPY --from=copier response.varfile response.varfile
+
+# See https://www.ej-technologies.com/resources/install4j/help/doc/installers/options.html
+RUN ./ppb-linux-x86_64.sh -c -q -varfile response.varfile
 
 # http, https, snmp
 EXPOSE 3052
