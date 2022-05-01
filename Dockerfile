@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:20.04
+FROM debian:bullseye-slim
 
 # installer doesn't like being run from /
 WORKDIR "/root"
@@ -18,6 +18,7 @@ RUN apt-get update && \
         curl \
         ca-certificates \
         libgusb2 \
+        libusb-0.1 \
         libusb-1.0-0 \
         usb.ids \
         usbutils \
