@@ -5,7 +5,14 @@ services:
     image: ghcr.io/nathanvaughn/powerpanel-business:local-latest
     # build: .
     ports:
-      - 80:3052
+      # Ports: ???, http, https, ???, snmp, snmp
+      # See https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-481.pdf
+      - 2003:2003
+      - 3052:3052
+      - 53568:53568/tcp
+      - 53566:53566/udp
+      - 161:161/udp
+      - 162:162/udp
     privileged: true
     restart: unless-stopped
     volumes:

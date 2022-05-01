@@ -21,10 +21,14 @@ RUN apt-get update && \
     ./ppb-linux-x86_64.sh -c -q -varfile response.varfile
     # See https://www.ej-technologies.com/resources/install4j/help/doc/installers/options.html
 
-# http, https, snmp
+# Ports: ???, http, https, ???, snmp, snmp
+# See https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-481.pdf
+EXPOSE 2003
 EXPOSE 3052
-EXPOSE 53568
-EXPOSE 162
+EXPOSE 53568/tcp
+EXPOSE 53566/udp
+EXPOSE 161/udp
+EXPOSE 162/udp
 VOLUME ["/usr/local/PPB/db_local/"]
 
 HEALTHCHECK CMD curl -vs --fail http://127.0.0.1:3052/ || exit 1
