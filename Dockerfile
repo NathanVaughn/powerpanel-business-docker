@@ -40,4 +40,7 @@ EXPOSE 162/udp
 VOLUME ["/usr/local/PPB/db_local/"]
 
 HEALTHCHECK CMD curl -vs --fail http://127.0.0.1:3052/ || exit 1
-ENTRYPOINT ["/usr/local/PPB/ppbed", "run"]
+
+COPY entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
