@@ -9,6 +9,10 @@ ENV POWERPANEL_VERSION=481
 # for definition of response files
 COPY --from=copier response.varfile response.varfile
 
+# Package reasons:
+#   curl: to download installer
+#   ca-certificates: to make https work
+#   *usb*: to connect to UPSs over USB
 RUN apt-get update && \
     apt-get install -y \
         curl \
