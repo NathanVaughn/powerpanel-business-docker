@@ -1,5 +1,8 @@
 FROM docker.io/library/ubuntu:20.04
 
+# installer doesn't like being run from /
+WORKDIR "/root"
+
 ENV POWERPANEL_VERSION=481
 
 # See https://www.ej-technologies.com/resources/install4j/help/doc/installers/responseFile.html
