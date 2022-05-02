@@ -1,7 +1,7 @@
 import json
 
 IMAGE_NAME = "powerpanel-business"
-VARIANTS = ["local", "remote"]
+VARIANTS = ["local", "remote", "both"]
 IMAGES = [
     f"docker.io/nathanvaughn/{IMAGE_NAME}",
     f"ghcr.io/nathanvaughn/{IMAGE_NAME}",
