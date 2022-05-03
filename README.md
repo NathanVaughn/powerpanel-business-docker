@@ -51,7 +51,7 @@ you can run the following commands in most modern Linux system shells:
 ```bash
 $ ups_type="Cyber Power"
 $ ups_dev_type="hiddev"
-$ dev_bus_usb_name=$(lsusb | grep "$ups_type" | sed -E -e "s/^Bus ([[:digit:]][[:digit:]][[:digit:]]) Device ([[:digit:]][[:digit:]][[:digit:]]):.+$/\/dev\/bus\/usb\/\1\/\2/")
+$ dev_bus_usb_name=$(lsusb | grep "$ups_type" | sed -E -e "s/^Bus ([0-9][0-9][0-9]) Device ([0-9][0-9][0-9]):.+$/\/dev\/bus\/usb\/\1\/\2/")
 $ usb_product_name=$(sudo lsusb -D "$dev_bus_usb_name" 2>/dev/null | grep "iProduct" | sed -E -e "s/\s*iProduct\s*[0-9]*\s*//")
 $ dev_usb_name=$(sudo dmesg | grep "$usb_product_name" | grep "$ups_dev_type" | tail -n 1 | sed -E -e "s/.*$ups_dev_type([0-9]+).*/\/dev\/usb\/$ups_dev_type\1/")
 $ echo "$dev_usb_name"
