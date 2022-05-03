@@ -148,7 +148,7 @@ Java runtime). This is an unfortunate result of how Cyber Power designed their
 software and will make software updates, migrations, and back-ups much 
 more difficult.
 
-If you need to migrate to a new version of this container or PPB software,
+- If you need to migrate to a new version of this container or PPB software,
 you may need to manually save and restore your data. To assist with that,
 here is a breakdown of the contents of `/usr/local/PPB/`:
 
@@ -172,4 +172,12 @@ here is a breakdown of the contents of `/usr/local/PPB/`:
 | /web/work/                | assets for web interface              | No                   |
 | /web-server/              | code/assets for web interface         | No                   |
 
-Hopefully, future versions of PPB will have a better separation of programs and data.
+- SNMP doesn't *seem* to be working, but someone with more experience with SNMP may be able to
+get it to work.
+
+- It's not clear what ports 2003 and 53566 are used for, but 2003, at least, needs to be exposed.
+
+- The names of the log files enabled by ENABLE_LOGGING start with a date and time. That date and 
+time is determined when the container is **launched**, not when the daemons are started. That 
+means that if you `docker exec` into a running container and manually restart either daemon,
+then you will overwrite the older logs.
