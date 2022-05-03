@@ -1,6 +1,6 @@
-FROM debian:bullseye-slim
+FROM docker.io/library/debian:bullseye-slim
 
-# installer doesn't like being run from /
+# installer does not like being run from /
 WORKDIR "/root"
 
 ENV POWERPANEL_VERSION=481
@@ -57,7 +57,7 @@ EXPOSE 162/udp
 #   the volume after it has been declared, those changes will be discarded."
 #       Therefore, files in /usr/local/PPB/db_local generated on service start might be lost
 # Solution: The volume must be /usr/local/PPB, not /usr/local/PPB/db_local. That means it will
-#   also contain ~275 MB of program files that don't need to be in a volume, but the 
+#   also contain ~275 MB of program files that don't need to be in a volume, but the
 #   alternative would be setting up ~10 volumes, which is too many.
 VOLUME ["/usr/local/PPB/"]
 
