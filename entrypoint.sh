@@ -3,8 +3,11 @@
 # contains double zeroes followed by a classpath url beginning with "com.cyberpowersystems"
 # These zeroes represent the file to direct standard error and standard out to, respectively.
 # We can replace them with dated file names to save the output:
-sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbed
-sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbwd
+if [ "$ENABLE_LOGGING" = true ] ; then
+	# see: https://stackoverflow.com/a/21210966
+	sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbed
+	sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbwd
+fi
 
 service ppbed start
 service ppbwd start

@@ -5,6 +5,8 @@ WORKDIR "/root"
 
 ENV POWERPANEL_VERSION=481
 
+ENV ENABLE_LOGGING=false
+
 # See https://www.ej-technologies.com/resources/install4j/help/doc/installers/responseFile.html
 # for definition of response files
 COPY --from=copier response.varfile response.varfile
