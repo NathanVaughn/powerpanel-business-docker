@@ -22,8 +22,8 @@ services:
     restart: unless-stopped
     volumes:
       - app_data:/usr/local/PPB
-      - /etc/localtime:/etc/localtime
-      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
 volumes:
   app_data:
