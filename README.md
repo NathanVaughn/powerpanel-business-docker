@@ -17,6 +17,12 @@ If you want to jump right in, take a look at the provided [docker-compose.yml](h
 
 The default username and password is `admin` and `admin`.
 
+Set ENABLE_LOGGING=true if you want to retain the standard output and
+error from the two PowerPanel daemons, ppbed and ppbwd. But make sure
+to delete these logs periodically. **There is nothing keeping these 
+files from filling your storage.** These logs will take up about 
+4 MiB per hour, or about 90 MiB per day.
+
 ### USB Devices
 
 If you're using the `local` or `both` tag, the Docker image will need to be
