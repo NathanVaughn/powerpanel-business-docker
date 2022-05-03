@@ -28,8 +28,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     curl -s -L 'https://dl4jz3rbrsfum.cloudfront.net/software/PPB_Linux%2064bit_v4.8.1.sh' -o ppb-linux-x86_64.sh && \
     chmod +x ppb-linux-x86_64.sh && \
-    ./ppb-linux-x86_64.sh -q -varfile response.varfile
     # See https://www.ej-technologies.com/resources/install4j/help/doc/installers/options.html
+    ./ppb-linux-x86_64.sh -q -varfile response.varfile && \
+    rm ppb-linux-x86_64.sh && \
+    rm response.varfile
 
 # Ports: ???, http, https, ???, snmp, snmp
 # See https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-481.pdf
