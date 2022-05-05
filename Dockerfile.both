@@ -1,6 +1,6 @@
 # syntax = edrevo/dockerfile-plus
 FROM docker.io/library/alpine:latest AS copier
 
-COPY response_local.varfile response.varfile
+COPY response_both.varfile response.varfile
 
 INCLUDE+ Dockerfile
