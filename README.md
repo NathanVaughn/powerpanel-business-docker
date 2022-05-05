@@ -19,8 +19,8 @@ The default username and password is `admin` and `admin`.
 
 Set ENABLE_LOGGING=true if you want to retain the standard output and
 error from the two PowerPanel daemons, ppbed and ppbwd. But make sure
-to delete these logs periodically. **There is nothing keeping these 
-files from filling your storage.** These logs will take up about 
+to delete these logs periodically. **There is nothing keeping these
+files from filling your storage.** These logs will take up about
 4 MiB per hour, or about 90 MiB per day.
 
 ### USB Devices
@@ -40,7 +40,7 @@ any number of reasons. Some of them include:
 
 - If the UPS is plugged into a different USB port.
 - If another device is plugged into a USB port before it.
-- If another device is plugged into a USB port *after* it.
+- If another device is plugged into a USB port _after_ it.
 - If the system is rebooted.
 - If the linux kernel is updated.
 - If certain software is updated.
@@ -60,8 +60,8 @@ $ echo "$dev_usb_name"
 Note that some UPSs may need a different `$ups_type` or `$ups_dev_type`.
 
 For example, let's say `$dev_usb_name` is `/dev/usb/hiddev0`. You can
-then add that to the appropriate part of your `docker run` command, 
-as `--device="/dev/usb/hiddev0:/dev/usb/hiddev0"`, or, in your 
+then add that to the appropriate part of your `docker run` command,
+as `--device="/dev/usb/hiddev0:/dev/usb/hiddev0"`, or, in your
 compose file, as in the following docker-compose fragment:
 
 ```yml
@@ -78,6 +78,7 @@ See [docker-compose.yml](https://github.com/NathanVaughn/powerpanel-business-doc
 ### Network
 
 The image exposes the following ports:
+
 - 2003 (used by PowerPanel Watchdog process)
 - 3052 (for HTTP access)
 - 53566/udp (for unknown use)
@@ -86,28 +87,30 @@ The image exposes the following ports:
 - 162/udp (for SNMP)
 
 If you don't enable SNMP or HTTPS, you may be able to get away
-with exposing only the first three ports, but HTTPS is *highly*
+with exposing only the first three ports, but HTTPS is _highly_
 recommended, and SNMP can be useful.
 
 See [docker-compose.yml](https://github.com/NathanVaughn/powerpanel-business-docker/blob/master/docker-compose.yml) for an example of how to expose these ports.
 
 ## Tags
 
-There are three versions of this image available: `local`, `remote`, 
-and `both`. See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-481.pdf) for the difference between them, 
+There are three versions of this image available: `local`, `remote`,
+and `both`. See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-481.pdf) for the difference between them,
 but in short:
+
 - Install `local` if the UPS is directly connected to the computer
-running this container. This is needed to run custom `*.sh`
-files on UPS events, schedule shutdown/restarts, monitor power usage,
-or configure the UPS itself.
+  running this container. This is needed to run custom `*.sh`
+  files on UPS events, schedule shutdown/restarts, monitor power usage,
+  or configure the UPS itself.
 - Install `remote` if this container is running on a computer which
-needs to be *shut down or restarted* by UPS events on other computers
-or network connected UPSs.
+  needs to be _shut down or restarted_ by UPS events on other computers
+  or network connected UPSs.
 - Install `both` in a multi-UPS setup, where there are directly-connected
-UPSs that need to be managed, but there is also a central UPS that is 
-controlled elsewhere.
+  UPSs that need to be managed, but there is also a central UPS that is
+  controlled elsewhere.
 
 Example:
+
 ```yml
 image: ghcr.io/nathanvaughn/powerpanel-business:local
 ```
@@ -142,42 +145,44 @@ This image is available from 3 different registries. Choose whichever you want:
 
 ## Known Issues
 
-- The volume contains all of the PowerPanel data, but *it also contains all 
-of the executables* for the PowerPanel Business software (including a full 
-Java runtime). This is an unfortunate result of how Cyber Power designed their
-software and will make software updates, migrations, and back-ups much 
-more difficult.
+- The volume contains all of the PowerPanel data, but _it also contains all
+  of the executables_ for the PowerPanel Business software (including a full
+  Java runtime). This is an unfortunate result of how Cyber Power designed their
+  software and will make software updates, migrations, and back-ups much
+  more difficult.
 
 - If you need to migrate to a new version of this container or PPB software,
-you may need to manually save and restore your data. To assist with that,
-here is a breakdown of the contents of `/usr/local/PPB/`:
+  you may need to manually save and restore your data. To assist with that,
+  here is a breakdown of the contents of `/usr/local/PPB/`:
 
-| Directory Relative to /usr/local/PPB  | Directory Content         | Contains User Data?  |
-| :-------------------------| :------------------------------------ | :------------------- |
-| /db_cloud/                | your db if using the cloud service    | Yes                  |
-| /db_local/                | your db if *not* using cloud service  | Yes                  |
-| /extcmd/                  | \*.sh files to run when events happen | Yes                  |
-| /jre/lib/security/cacerts | your SSL cert if you upload one       | Yes                  |
-| /cert/                    | possibly your SSL security keys       | Probably             |
-| /etc/                     | UPS test results                      | Probably             |
-| /log/                     | PPB output logs                       | Probably Not         |
-| /uploads/                 | Unknown                               | Probably Not         |
-| /temp/                    | uploaded profile files                | Probably Not         |
-| /.install4j/              | installation logs, programs, assets   | No                   |
-| /bin/                     | PPB executable programs               | No                   |
-| /fonts/                   | PPB fonts                             | No                   |
-| /jre/                     | PPB's Java Runtime                    | No                   |
-| /lib/                     | PPB program libraries                 | No                   |
-| /licenses/                | PPB licenses                          | No                   |
-| /web/work/                | assets for web interface              | No                   |
-| /web-server/              | code/assets for web interface         | No                   |
+| Directory Relative to /usr/local/PPB | Directory Content                     | Contains User Data? |
+| :----------------------------------- | :------------------------------------ | :------------------ |
+| /db_cloud/                           | your db if using the cloud service    | Yes                 |
+| /db_local/                           | your db if _not_ using cloud service  | Yes                 |
+| /extcmd/                             | \*.sh files to run when events happen | Yes                 |
+| /jre/lib/security/cacerts            | your SSL cert if you upload one       | Yes                 |
+| /cert/                               | possibly your SSL security keys       | Probably            |
+| /etc/                                | UPS test results                      | Probably            |
+| /log/                                | PPB output logs                       | Probably Not        |
+| /uploads/                            | Unknown                               | Probably Not        |
+| /temp/                               | uploaded profile files                | Probably Not        |
+| /.install4j/                         | installation logs, programs, assets   | No                  |
+| /bin/                                | PPB executable programs               | No                  |
+| /fonts/                              | PPB fonts                             | No                  |
+| /jre/                                | PPB's Java Runtime                    | No                  |
+| /lib/                                | PPB program libraries                 | No                  |
+| /licenses/                           | PPB licenses                          | No                  |
+| /web/work/                           | assets for web interface              | No                  |
+| /web-server/                         | code/assets for web interface         | No                  |
 
-- SNMP doesn't *seem* to be working, but someone with more experience with SNMP may be able to
-get it to work.
+- SNMP doesn't _seem_ to be working, but someone with more experience with SNMP may be able to
+  get it to work.
 
 - It's not clear what ports 2003 and 53566 are used for, but 2003, at least, needs to be exposed.
 
-- The names of the log files enabled by ENABLE_LOGGING start with a date and time. That date and 
-time is determined when the container is **launched**, not when the daemons are started. That 
-means that if you `docker exec` into a running container and manually restart either daemon,
-then you will overwrite the older logs.
+- The names of the log files enabled by ENABLE_LOGGING start with a date and time. That date and
+  time is determined when the container is **launched**, not when the daemons are started. That
+  means that if you `docker exec` into a running container and manually restart either daemon,
+  then you will overwrite the older logs.
+
+- Working behind a reverse proxy since version 450 is a struggle.

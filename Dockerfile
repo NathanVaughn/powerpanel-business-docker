@@ -65,6 +65,6 @@ VOLUME ["/usr/local/PPB/"]
 
 HEALTHCHECK CMD curl -vs --fail http://127.0.0.1:3052/ || exit 1
 
-COPY entrypoint.sh entrypoint.sh
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+COPY docker-entrypoint.sh docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
+ENTRYPOINT ["./docker-entrypoint.sh"]

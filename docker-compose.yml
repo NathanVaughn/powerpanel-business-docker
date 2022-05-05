@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   app:
@@ -15,10 +15,10 @@ services:
       - 162:162/udp
     devices:
       # sharing /dev/usb is sufficient for debian and ubuntu,
-      # but other distributions might also need access to 
+      # but other distributions might also need access to
       # /dev/bus/usb/*
       - "/dev/usb:/dev/usb"
-#      - "/dev/bus/usb:/dev/bus/usb"
+      # - "/dev/bus/usb:/dev/bus/usb"
     restart: unless-stopped
     volumes:
       - app_data:/usr/local/PPB
