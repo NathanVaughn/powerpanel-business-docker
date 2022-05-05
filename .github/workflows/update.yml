@@ -63,4 +63,5 @@ jobs:
         with:
           tags: ${{ matrix.images }}
           file: ${{ matrix.dockerfile }}
+          context: .
           push: true
