@@ -5,7 +5,7 @@ VARIANTS = ["local", "remote", "both"]
 IMAGES = [
     f"docker.io/nathanvaughn/{IMAGE_NAME}",
     f"ghcr.io/nathanvaughn/{IMAGE_NAME}",
-    f"cr.nthnv.me/library/{IMAGE_NAME}",
+    # f"cr.nthnv.me/library/{IMAGE_NAME}",
 ]
 
 
