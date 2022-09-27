@@ -18,7 +18,7 @@ If you want to jump right in, take a look at the provided [docker-compose.yml](h
 The default username and password is `admin` and `admin`.
 
 Set ENABLE_LOGGING=true if you want to retain the standard output and
-error from the two PowerPanel daemons, ppbed and ppbwd. But make sure
+error from the two PowerPanel daemons, ppbd and ppbwd. But make sure
 to delete these logs periodically. **There is nothing keeping these
 files from filling your storage.** These logs will take up about
 4 MiB per hour, or about 90 MiB per day.
@@ -95,7 +95,7 @@ See [docker-compose.yml](https://github.com/NathanVaughn/powerpanel-business-doc
 ## Tags
 
 There are three versions of this image available: `local`, `remote`,
-and `both`. See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-481.pdf) for the difference between them,
+and `both`. See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-486.pdf) for the difference between them,
 but in short:
 
 - Install `local` if the UPS is directly connected to the computer
@@ -121,10 +121,10 @@ Specific versions of PowerPanel can be accessed by appending a dash and a
 three-digit version number to the image tag. For example,
 
 ```yml
-image: ghcr.io/nathanvaughn/powerpanel-business:local-481
+image: ghcr.io/nathanvaughn/powerpanel-business:local-486
 ```
 
-Note that as of `2022-05`, the only secure version is `481`. Previous
+Note that as of `2022-05`, the only secure versions are `481` and `486`. Previous
 versions use insecure versions of [log4j](https://www.cve.org/CVERecord?id=CVE-2021-44228).
 
 ### Latest

@@ -12,11 +12,11 @@ set -e
 #	New cmd: $some_long_java_command stderr stdout com.cyberpowersystems...
 if [ "$ENABLE_LOGGING" = true ] ; then
 	# see: https://stackoverflow.com/a/21210966
-	sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbed
+	sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbd
 	sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbwd
 fi
 
-service ppbed start
+service ppbd start
 service ppbwd start
 
 # to run indefinitely instead of stopping as soon as the previous commands complete
