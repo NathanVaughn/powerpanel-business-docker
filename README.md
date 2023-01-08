@@ -17,18 +17,18 @@ If you want to jump right in, take a look at the provided [docker-compose.yml](h
 
 The default username and password is `admin` and `admin`.
 
-Set ENABLE_LOGGING=true if you want to retain the standard output and
-error from the two PowerPanel daemons, ppbd and ppbwd. But make sure
-to delete these logs periodically. **There is nothing keeping these
-files from filling your storage.** These logs will take up about
-4 MiB per hour, or about 90 MiB per day.
+Set the environment variable `ENABLE_LOGGING` to `true` if you want to
+retain the standard output and error from the two PowerPanel daemons,
+`ppbd` and `ppbwd`.  But make sure to delete these logs periodically.
+**There is nothing keeping these files from filling your storage.**
+These logs will take up about 4 MiB per hour, or about 90 MiB per day.
 
 ### USB Devices
 
 If you're using the `local` or `both` tag, the Docker image will need to be
 able to access the UPS as a USB device. There are two ways to accomplish this:
 
-**Option #1:** You could give the container access to the entire usb bus by sharing
+**Option #1:** You could give the container access to the entire USB bus by sharing
 `/dev/usb` (and possibly `/dev/bus/usb` on some distributions). To do this
 in a `docker run` command, you would add `--device=/dev/usb:/dev/usb` (and
 possibly `--device=/dev/bus/usb:/dev/bus/usb`) to your command. See
@@ -49,12 +49,12 @@ Nonetheless, if you want to limit this container's access to other USB devices,
 you can run the following commands in most modern Linux system shells:
 
 ```bash
-$ ups_type="Cyber Power"
-$ ups_dev_type="hiddev"
-$ dev_bus_usb_name=$(lsusb | grep "$ups_type" | sed -E -e "s/^Bus ([0-9][0-9][0-9]) Device ([0-9][0-9][0-9]):.+$/\/dev\/bus\/usb\/\1\/\2/")
-$ usb_product_name=$(sudo lsusb -D "$dev_bus_usb_name" 2>/dev/null | grep "iProduct" | sed -E -e "s/\s*iProduct\s*[0-9]*\s*//")
-$ dev_usb_name=$(sudo dmesg | grep "$usb_product_name" | grep "$ups_dev_type" | tail -n 1 | sed -E -e "s/.*$ups_dev_type([0-9]+).*/\/dev\/usb\/$ups_dev_type\1/")
-$ echo "$dev_usb_name"
+ups_type="Cyber Power"
+ups_dev_type="hiddev"
+dev_bus_usb_name=$(lsusb | grep "$ups_type" | sed -E -e "s/^Bus ([0-9][0-9][0-9]) Device ([0-9][0-9][0-9]):.+$/\/dev\/bus\/usb\/\1\/\2/")
+usb_product_name=$(sudo lsusb -D "$dev_bus_usb_name" 2>/dev/null | grep "iProduct" | sed -E -e "s/\s*iProduct\s*[0-9]*\s*//")
+dev_usb_name=$(sudo dmesg | grep "$usb_product_name" | grep "$ups_dev_type" | tail -n 1 | sed -E -e "s/.*$ups_dev_type([0-9]+).*/\/dev\/usb\/$ups_dev_type\1/")
+echo "$dev_usb_name"
 ```
 
 Note that some UPSs may need a different `$ups_type` or `$ups_dev_type`.
@@ -143,6 +143,18 @@ This image is available from 3 different registries. Choose whichever you want:
 - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
 - [cr.nthnv.me/library/powerpanel-business](https://cr.nthnv.me/harbor/projects/1/repositories/powerpanel-business) (experimental)
 
+## ESXi
+
+You can enable ESXi shutdown (which replaces the local shutdown option) by
+adding the following line to `/usr/local/PPB/etc/config.properties`:
+
+```bash
+isVirtualAppliance = true
+```
+
+See [this issue](https://github.com/NathanVaughn/powerpanel-business-docker/issues/18)
+for more info.
+
 ## Known Issues
 
 - The volume contains all of the PowerPanel data, but _it also contains all
@@ -180,9 +192,19 @@ This image is available from 3 different registries. Choose whichever you want:
 
 - It's not clear what ports 2003 and 53566 are used for, but 2003, at least, needs to be exposed.
 
-- The names of the log files enabled by ENABLE_LOGGING start with a date and time. That date and
+- The names of the log files enabled by `ENABLE_LOGGING` start with a date and time. That date and
   time is determined when the container is **launched**, not when the daemons are started. That
   means that if you `docker exec` into a running container and manually restart either daemon,
   then you will overwrite the older logs.
 
-- Working behind a reverse proxy since version 450 is a struggle.
+- Since version 450, using a reverse proxy requires extra configuration. Make sure your
+  proxy is setting the header `Origin` to an empty string. An example Nginx config:
+
+  ```nginx
+  location / {
+          proxy_pass http://ip:3052;
+          proxy_set_header 'Origin' '';
+  }
+  ```
+
+- The `local` version is broken on recent versions. You can use the `both` version instead.
