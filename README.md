@@ -75,6 +75,10 @@ The image mounts a volume to `/usr/local/PPB/`, which contains all PPB programs 
 
 See [docker-compose.yml](https://github.com/NathanVaughn/powerpanel-business-docker/blob/master/docker-compose.yml) for an example of how to mount this in a compose file.
 
+You **must** use a volume for this. A bind mount obscures files in the container
+with what is on the host, which will break the container. I've had issues
+even just bind-mounting the `/usr/local/PPB/db_local/` directory.
+
 ### Network
 
 The image exposes the following ports:
