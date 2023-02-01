@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:22.04
+FROM docker.io/library/ubuntu:23.04
 
 # installer does not like being run from /
 WORKDIR "/root"
