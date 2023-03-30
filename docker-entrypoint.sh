@@ -16,6 +16,38 @@ if [ "$ENABLE_LOGGING" = true ] ; then
 	sed -E -i -e "s#0 0 com.cyberpowersystems#\$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_err.log \$prg_dir/log/\$\(date +\"%Y-%m-%d_%H-%M-%S\"\)_\${progname}_out.log com.cyberpowersystems#g" /usr/local/PPB/ppbwd
 fi
 
+# Check data directories for existance
+# if they do not exist, move them from container to the volume
+# create links in /usr/local/PPB
+# WARNING: directories cert/ and extcmd/ cannot be linked. If you use these functions, they will need on own volume besides /data
+
+DATA_VOL="/data"
+INST_LOC="/usr/local/PPB"
+for asset in db_cloud db_local db_remote etc log jre/lib/security/cacerts; do
+#for asset in cert db_cloud db_local db_remote etc extcmd log jre/lib/security/cacerts; do
+	if [ -e $DATA_VOL/$asset ]; then
+		if [ -e $INST_LOC/$asset ]; then
+			echo "$DATA_VOL/$assset existing -> removing $INST_LOC/$asset"
+			rm -rf $INST_LOC/$asset
+		else
+			echo "WARNING: As $INST_LOC/$asset does not exist, it seems that service initialization did not run properly at container build"
+		fi
+	elif [ -e $INST_LOC/$asset ]; then
+		echo "$DATA_VOL/$asset not existing, $INST_LOC/$asset exiting -> moving"
+		mv $INST_LOC/$asset $DATA_VOL/
+	else
+		echo "WARNING: $asset not found"
+		echo
+		continue
+	fi
+
+	echo "Creating Link $INST_LOC/$asset -> $DATA_VOL/$asset"
+	ln -s $DATA_VOL/$asset $INST_LOC/$asset
+	echo
+done
+
+
+
 service ppbd start
 service ppbwd start
 
