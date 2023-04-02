@@ -52,5 +52,9 @@ done
 service ppbd start
 service ppbwd start
 
-# to run indefinitely instead of stopping as soon as the previous commands complete
-tail -F /dev/null
+# Trap SIGHUP SIGINT SIGTERM
+trap "exit" 1 2 15
+
+# to run indefinitely instead of stopping as soon as the previous commands complete - wait for children
+tail -F /dev/null & wait
+
