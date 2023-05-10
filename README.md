@@ -145,7 +145,7 @@ This image is available from 3 different registries. Choose whichever you want:
 
 - [docker.io/nathanvaughn/powerpanel-business](https://hub.docker.com/r/nathanvaughn/powerpanel-business)
 - [ghcr.io/nathanvaughn/powerpanel-business](https://github.com/users/nathanvaughn/packages/container/package/powerpanel-business)
-- [cr.nthnv.me/library/powerpanel-business](https://cr.nthnv.me/harbor/projects/1/repositories/powerpanel-business) (experimental)
+- [cr.nathanv.app/library/powerpanel-business](https://cr.nathanv.app/harbor/projects/1/repositories/powerpanel-business) (experimental)
 
 ## ESXi
 
