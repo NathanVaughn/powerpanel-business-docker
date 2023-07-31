@@ -42,7 +42,7 @@ RUN service ppbd start && \
     service ppbd stop
 
 # Ports: ???, http, https, ???, snmp, snmp
-# See https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-486.pdf
+# See https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-490.pdf
 EXPOSE 2003
 EXPOSE 3052
 EXPOSE 53568/tcp
