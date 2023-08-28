@@ -6,7 +6,7 @@ services:
     # build: .
     ports:
       # Ports: ???, http, https, ???, snmp, snmp
-      # See https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-486.pdf
+      # See https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-490.pdf
       - 2003:2003
       - 3052:3052
       - 53568:53568/tcp
