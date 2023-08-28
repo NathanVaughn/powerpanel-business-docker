@@ -99,7 +99,7 @@ See [docker-compose.yml](https://github.com/NathanVaughn/powerpanel-business-doc
 ## Tags
 
 There are three versions of this image available: `local`, `remote`,
-and `both`. See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-486.pdf) for the difference between them,
+and `both`. See the [User Manual](https://dl4jz3rbrsfum.cloudfront.net/documents/CyberPower_UM_PowerPanel-Business-490.pdf) for the difference between them,
 but in short:
 
 - Install `local` if the UPS is directly connected to the computer
@@ -125,10 +125,10 @@ Specific versions of PowerPanel can be accessed by appending a dash and a
 three-digit version number to the image tag. For example,
 
 ```yml
-image: ghcr.io/nathanvaughn/powerpanel-business:local-486
+image: ghcr.io/nathanvaughn/powerpanel-business:local-490
 ```
 
-Note that as of `2022-05`, the only secure versions are `481` and `486`. Previous
+Note that as of `2022-05`, the only secure versions are `481`, `486`, and `490`. Previous
 versions use insecure versions of [log4j](https://www.cve.org/CVERecord?id=CVE-2021-44228).
 
 ### Latest
