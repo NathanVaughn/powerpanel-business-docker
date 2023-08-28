@@ -21,8 +21,7 @@ jobs:
       - name: Get Versions
         id: set-matrix
         run: |
-          echo "::echo::on"
-          echo "::set-output name=matrix::$(python3 versionchecker.py)"
+          echo "matrix=$(python3 versionchecker.py)" >> $GITHUB_OUTPUT
 
   buildversions:
     needs: getversions
