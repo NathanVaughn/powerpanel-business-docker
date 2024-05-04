@@ -13,7 +13,7 @@ def main(image_type: str) -> None:
             "-f",
             f"Dockerfile.{image_type}",
             "-t",
-            "webtrees:test",
+            "powerpanel:test",
             ".",
         ],
         cwd=os.path.join(ROOT_DIR, "docker"),
