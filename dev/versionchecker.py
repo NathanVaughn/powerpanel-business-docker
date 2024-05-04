@@ -1,17 +1,18 @@
 import json
+import os
 
 IMAGE_NAME = "powerpanel-business"
 VARIANTS = ["local", "remote", "both"]
 IMAGES = [
     f"docker.io/nathanvaughn/{IMAGE_NAME}",
     f"ghcr.io/nathanvaughn/{IMAGE_NAME}",
-    # f"cr.nthnv.me/library/{IMAGE_NAME}",
 ]
 
+ROOT_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def main():
     # extract version from Dockerfile
-    with open("Dockerfile", "r") as fp:
+    with open(os.path.join(ROOT_DIR, "docker", "Dockerfile"), "r") as fp:
         lines = fp.readlines()
 
     version = next(
@@ -36,10 +37,15 @@ def main():
             )
 
         matrix_data["include"].append(
-            {"dockerfile": f"Dockerfile.{variant}", "images": ",".join(tagging_list)}
+            {"dockerfile": f"Dockerfile.{variant}", "tags": ",".join(tagging_list)}
         )
 
-    print(json.dumps(matrix_data))
+    # save output
+    print(json.dumps(matrix_data, indent=4))
+
+    if github_output := os.getenv("GITHUB_OUTPUT"):
+        with open(github_output, "w") as fp:
+            fp.write(f"matrixes={json.dumps(matrix_data)}")
 
 
 if __name__ == "__main__":

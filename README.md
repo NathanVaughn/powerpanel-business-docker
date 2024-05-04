@@ -139,6 +139,10 @@ Alternatively, you can access the latest version like so:
 image: ghcr.io/nathanvaughn/powerpanel-business:remote-latest
 ```
 
+> **🚨 WARNING 🚨**
+> Latest versions are unstable due to the difficulty in testing.
+> Use specific tagged versions instead.
+
 ## Registry
 
 This image is available from 3 different registries. Choose whichever you want:

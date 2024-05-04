@@ -1,9 +1,9 @@
-FROM docker.io/library/ubuntu:22.04
+FROM docker.io/library/ubuntu:24.04
 
 # installer does not like being run from /
 WORKDIR "/root"
 
-ENV POWERPANEL_VERSION=490
+ENV POWERPANEL_VERSION=4101
 
 ENV ENABLE_LOGGING=false
 
@@ -26,7 +26,7 @@ RUN apt-get update && \
         usbutils \
         --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
-    curl -s -L 'https://dl4jz3rbrsfum.cloudfront.net/software/PPB_Linux%2064bit_v4.9.0.sh' -o ppb-linux-x86_64.sh && \
+    curl -s -L 'https://dl4jz3rbrsfum.cloudfront.net/software/PPB_Linux%2064bit_v4.10.1.sh' -o ppb-linux-x86_64.sh && \
     chmod +x ppb-linux-x86_64.sh && \
     # See https://www.ej-technologies.com/resources/install4j/help/doc/installers/options.html
     ./ppb-linux-x86_64.sh -q -varfile response.varfile && \
