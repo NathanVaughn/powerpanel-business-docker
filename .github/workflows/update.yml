@@ -42,6 +42,7 @@ jobs:
       tags: ${{ matrix.tags }}
       context: docker
       dockerfile: docker/${{ matrix.dockerfile }}
+      dockerhub_reponame: powerpanel-business
     secrets:
       dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       dockerhub_password: ${{ secrets.DOCKERHUB_PASSWORD }}
