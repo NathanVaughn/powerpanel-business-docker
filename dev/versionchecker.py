@@ -8,7 +8,8 @@ IMAGES = [
     f"ghcr.io/nathanvaughn/{IMAGE_NAME}",
 ]
 
-ROOT_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def main():
     # extract version from Dockerfile
@@ -45,7 +46,7 @@ def main():
 
     if github_output := os.getenv("GITHUB_OUTPUT"):
         with open(github_output, "w") as fp:
-            fp.write(f"matrixes={json.dumps(matrix_data)}")
+            fp.write(f"matrix={json.dumps(matrix_data)}")
 
 
 if __name__ == "__main__":
