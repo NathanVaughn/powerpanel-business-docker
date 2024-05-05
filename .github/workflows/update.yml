@@ -41,6 +41,7 @@ jobs:
       tags: ${{ matrix.tags }}
       context: docker
       dockerfile: docker/${{ matrix.dockerfile }}
+      attest_id: ${{ matrix.attest_id }}
     secrets:
       dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       dockerhub_password: ${{ secrets.DOCKERHUB_PASSWORD }}
