@@ -1,0 +1,40 @@
+name: Cleanup PR Images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  purge-image:
+    name: Delete image from ghcr.io
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Delete image
+        uses: lazyfrosch/ghcr-delete-image-action@main
+        with:
+          is_user: true
+          owner: nathanvaughn
+          name: powerpanel-business
+          token: ${{ github.token }}
+          tag: sha256-214130755e381c6af462d5c7926e4479d888a18921041bc7a52959470ca9f73a
+
+      - name: Delete image
+        uses: lazyfrosch/ghcr-delete-image-action@main
+        with:
+          is_user: true
+          owner: nathanvaughn
+          name: powerpanel-business
+          token: ${{ github.token }}
+          tag: sha256-ed465009ce3c2c1574ae64ed5c4ed7610407d91a890d5665e233098cc8e9c368
+
+      - name: Delete image
+        uses: lazyfrosch/ghcr-delete-image-action@main
+        with:
+          is_user: true
+          owner: nathanvaughn
+          name: powerpanel-business
+          token: ${{ github.token }}
+          tag: sha256-c58b1d0140ddfee907e4a18b7c6df0433e1c9eac2570328779479a2731181a21
