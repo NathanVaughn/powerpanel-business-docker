@@ -116,7 +116,7 @@ but in short:
 Example:
 
 ```yml
-image: ghcr.io/nathanvaughn/powerpanel-business:local
+image: ghcr.io/nathanvaughn/powerpanel-business:local-latest
 ```
 
 ### Specific Versions
